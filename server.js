@@ -2,18 +2,16 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import connectionDB from "./config/db.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 
 connectionDB();
 
-app.get("/", (req, res) => {
-    res.send("Hello express Backend!");
-});
+app.use(express.json());
+app.use("/api/auth", authRoutes);
 
-app.get("/note", (req, res) => {
-    res.send("Note Page!")
-})
+
 
 // Make a about route that have about of a users information like name, age, and hobbies
 
